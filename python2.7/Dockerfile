@@ -32,8 +32,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # specify uWSGI.ini file to use, for customization
 ENV UWSGI_INI /app/uwsgi.ini
 
-# By default, Nginx defaults to a maximum of 1 MB file sizes
-# to allow unlimited file size, change to: ENV NGINX_MAX_UPLOAD 0
+# Allow unlimited Nginx file size uploads by changing: ENV NGINX_MAX_UPLOAD 0
 ENV NGINX_MAX_UPLOAD 1m
 
 # The entrypoint will generate Nginx additional configs
@@ -46,4 +45,5 @@ COPY ./app /app
 WORKDIR /app
 
 # CMD ["/usr/bin/supervisord"]
-CMD ["/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf"]
+# CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
