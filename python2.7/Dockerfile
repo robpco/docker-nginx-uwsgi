@@ -25,7 +25,7 @@ COPY uwsgi.ini /etc/uwsgi/
 
 RUN apt-get update && apt-get install -y supervisor \
 && rm -rf /var/lib/apt/lists/*
-# Copy the Custom Supervisord config for nginx + uwsgi 
+# Copy the Custom Supervisord config for nginx + uwsgi
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # specify uWSGI.ini file to use, for customization
@@ -43,6 +43,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 COPY ./app /app
 WORKDIR /app
 
-# CMD ["/usr/bin/supervisord"]
-# CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

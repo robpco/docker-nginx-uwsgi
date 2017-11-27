@@ -42,4 +42,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 COPY ./app /app
 WORKDIR /app
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
