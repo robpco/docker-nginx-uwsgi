@@ -1,4 +1,4 @@
-*NOTE: These images are derivatives of **tiangolo's images** [UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker) **which are released under Apache 2**.  They are the result of configuration changes I needed to make for my projects, so I decided to share them, in their modified form.
+*NOTE: These images are derivatives of **tiangolo's images** [UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker)* *which are released under Apache 2.  They are the result of configuration changes I needed to make for my projects, so I decided to share them, in their modified form.*
 
 # Supported tags
 
@@ -31,7 +31,7 @@ The Dockerfile's for each version only differ on the first line, which specifies
 
 A docker-hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi/) contains pre-built images.  The images can be pulled by using the python version as a tag.
 
-```
+```bash
 docker pull robpco/nginx-uwsgi:python2.7
 docker pull robpco/nginx-uwsgi:python3.5
 docker pull robpco/nginx-uwsgi:python3.6
