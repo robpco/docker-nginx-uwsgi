@@ -11,7 +11,7 @@
 
 # Overview
 
-**Docker** image with **Nginx**, **uWSGI** and **Python** running in a single container that enables easy migration of Python Web Apps to production on NGINX.  They are designed as a base image, and do not have web-frameworks pre-installed.  To use them, just add your web-framework of choice (Flask, Django, etc..) and python application.
+**Docker** image with **Nginx**, **uWSGI** and **Python** running in a single container that enables easy migration of Python Web Apps to production on NGINX.  They are designed as a base image, and do not have web-frameworks pre-installed.  To use them, add your web-framework of choice (Flask, Django, etc..) and python application.
 
 **For detailed information, examples and documentation visit tiangolo's [repo](https://github.com/tiangolo/uwsgi-nginx-docker).**
 
@@ -34,4 +34,4 @@ The docker-hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi/) contai
 docker pull robpco/nginx-uwsgi:python3.6-alpine
 ```
 
-NOTE:  They do NOT not support a `latest` tag, because they are different variants, not incremental versions.  Using a `latest` tag with images of this sort can lead to potentially catastrophic results.
+NOTE:  They do NOT not support a `latest` tag, because they are different variants, not incremental versions.  Using a `latest` tag with images of this sort can potentially lead to catastrophic results.
