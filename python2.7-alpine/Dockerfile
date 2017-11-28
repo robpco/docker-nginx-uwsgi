@@ -1,7 +1,7 @@
 FROM python:2.7-alpine
 
 # alpine installs NGINX_VERSION 1.10.3 via apk
-ENV NGINX_VERSION 1.12.2-r1
+ENV NGINX_VERSION 1.12.2-r3
 
 RUN apk update \
     && apk add --no-cache --virtual .build-deps \
@@ -9,9 +9,9 @@ RUN apk update \
 	  libc-dev \
 	  linux-headers \
 	  bash \
-    nginx \
+    nginx=${NGINX_VERSION} \
     supervisor
-    # nginx=${NGINX_VERSION} \
+    # nginx \
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	  && ln -sf /dev/stderr /var/log/nginx/error.log
