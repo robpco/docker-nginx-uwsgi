@@ -13,13 +13,9 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 EXPOSE 80 443
 
-# Make NGINX run on the foreground
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-# Remove default configuration from Nginx
 RUN rm /etc/nginx/conf.d/default.conf
-# Copy the modified Nginx conf
 COPY nginx.conf /etc/nginx/conf.d/
-# Copy the base uWSGI ini file to enable default dynamic uwsgi process number
 COPY uwsgi.ini /etc/uwsgi/
 
 RUN apt-get update && apt-get install -y supervisor \
@@ -27,13 +23,11 @@ RUN apt-get update && apt-get install -y supervisor \
 # Copy the Custom Supervisord config for nginx + uwsgi
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# specify uWSGI.ini file to use, for customization
 ENV UWSGI_INI /app/uwsgi.ini
-
 # Allow unlimited Nginx file size uploads by changing: ENV NGINX_MAX_UPLOAD 0
 ENV NGINX_MAX_UPLOAD 1m
 
-# The entrypoint will generate Nginx additional configs
+# The entrypoint will generate additional Nginx configs
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
