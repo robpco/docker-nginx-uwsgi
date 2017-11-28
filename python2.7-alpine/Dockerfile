@@ -18,7 +18,7 @@ EXPOSE 80 443
 
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 # Remove default configuration from Nginx
-#RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/
 COPY uwsgi.ini /etc/uwsgi/
 
