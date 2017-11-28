@@ -27,6 +27,11 @@ ENV UWSGI_INI /app/uwsgi.ini
 # ENV NGINX_MAX_UPLOAD 0   # Enables unlimited size uploads
 ENV NGINX_MAX_UPLOAD 1m
 
+# By default, Nginx listens on port 80.
+# To modify this, change LISTEN_PORT environment variable.
+# (in a Dockerfile or with an option for `docker run`)
+ENV LISTEN_PORT 80
+
 # entrypoint.sh generates additional Nginx configs
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
