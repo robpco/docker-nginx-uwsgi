@@ -1,16 +1,13 @@
 FROM python:3.6-alpine
 
 RUN apk update \
-    && apk add --no-cache --virtual build-deps \
-	  gcc \
+    && apk add --no-cache gcc \
 	  libc-dev \
 	  linux-headers \
-    && apk add --no-cache \
 	  bash \
     nginx \
     supervisor \
-    && pip install uwsgi \
-    && apk del build-deps
+    && pip install uwsgi
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	  && ln -sf /dev/stderr /var/log/nginx/error.log

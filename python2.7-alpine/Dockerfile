@@ -2,7 +2,6 @@ FROM python:2.7-alpine
 
 RUN apk update \
     && apk add --no-cache gcc \
-	  gcc \
 	  libc-dev \
 	  linux-headers \
 	  bash \
