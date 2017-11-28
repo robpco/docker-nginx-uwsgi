@@ -4,13 +4,16 @@ FROM python:2.7-alpine
 ENV NGINX_VERSION 1.12.2-r3
 
 RUN apk update \
-    && apk add --no-cache --virtual .build-deps \
+    && apk add --no-cache --virtual build-deps \
 	  gcc \
 	  libc-dev \
 	  linux-headers \
+    && apk add --no-cache \
 	  bash \
     nginx=${NGINX_VERSION} \
-    supervisor
+    supervisor \
+    && pip install uwsgi \
+    && apk del build-deps
     # nginx \
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -25,7 +28,7 @@ RUN mkdir -p /run/nginx
 COPY nginx.conf /etc/nginx/conf.d/
 COPY uwsgi.ini /etc/uwsgi/
 
-RUN pip install uwsgi
+# RUN pip install uwsgi
 # Custom Supervisord config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
