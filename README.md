@@ -1,4 +1,4 @@
-*NOTE: These images are derivatives of **tiangolo's images** [UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker)* *which are released under Apache 2.  These variants are the result of configuration changes I required for a few projects, so I'm sharing my modifications.*
+*NOTE: These image are the result of several configuration changes I needed to make to **tiangolo's images** [UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker) *Since his images were released under Apache 2, I'm sharing my modifications.*
 
 # Supported tags
 
@@ -19,6 +19,8 @@ These images include the following differences from the original:
   - This eliminates another different CRIT error
 - Includes updated version of Nginx (1.13.7)
 - Includes updated python revisions for each supported version (2.7, 3.5, and 3.6)
+- Added LISTEN_PORT env var to allow setting custom ports (in the Dockerfile or via Env file in docker run/docker-compose)
+- Added Alpine Versions submitting by ProgEsteves (not yet fully tested)
 
 For documentation please visit tiangolo's [repo](https://github.com/tiangolo/uwsgi-nginx-docker).
 
