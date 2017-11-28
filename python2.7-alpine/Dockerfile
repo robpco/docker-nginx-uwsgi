@@ -20,8 +20,10 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	  && ln -sf /dev/stderr /var/log/nginx/error.log
 EXPOSE 80 443
 
+# Replace Nginx configuration on alpine
+RUN rm /etc/nginx/nginx.conf
+COPY nginx.main.conf /etc/nginx/nginx.conf
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-# Remove default configuration from Nginx - doesnt exist on alpine
 # RUN rm /etc/nginx/conf.d/default.conf
 # Required on alpine
 RUN mkdir -p /run/nginx
