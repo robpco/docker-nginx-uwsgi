@@ -20,14 +20,13 @@ COPY uwsgi.ini /etc/uwsgi/
 
 RUN apt-get update && apt-get install -y supervisor \
 && rm -rf /var/lib/apt/lists/*
-# Copy the Custom Supervisord config for nginx + uwsgi
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENV UWSGI_INI /app/uwsgi.ini
-# Allow unlimited Nginx file size uploads by changing: ENV NGINX_MAX_UPLOAD 0
+# ENV NGINX_MAX_UPLOAD 0   # Enables unlimited size uploads
 ENV NGINX_MAX_UPLOAD 1m
 
-# The entrypoint will generate additional Nginx configs
+# entrypoint.sh generates additional Nginx configs
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
