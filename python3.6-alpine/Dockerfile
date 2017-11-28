@@ -1,4 +1,6 @@
-FROM python:2.7-alpine
+FROM python:3.6-alpine
+
+MAINTAINER Sebastian Ramirez <tiangolo@gmail.com>
 
 ENV NGINX_VERSION 1.12.1
 # ENV NGINX_VERSION 1.13.7
