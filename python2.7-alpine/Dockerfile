@@ -10,11 +10,11 @@ RUN apk update \
 	  linux-headers \
     && apk add --no-cache \
 	  bash \
-    nginx=${NGINX_VERSION} \
+    nginx \
+    # nginx=${NGINX_VERSION} \
     supervisor \
     && pip install uwsgi \
     && apk del build-deps
-    # nginx \
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	  && ln -sf /dev/stderr /var/log/nginx/error.log
