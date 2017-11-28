@@ -1,4 +1,4 @@
-*NOTE: These images are derivatives of **tiangolo's images** [UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker)* *which are released under Apache 2.  They are the result of configuration changes I needed to make for my projects, so I decided to share them, in their modified form.*
+*NOTE: These images are derivatives of **tiangolo's images** [UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker)* *which are released under Apache 2.  I needed to make my configuration changes for a few projects, so I decided to share the modifications.*
 
 # Supported tags
 
