@@ -9,8 +9,9 @@ RUN apk update \
 	  libc-dev \
 	  linux-headers \
 	  bash \
-    nginx=${NGINX_VERSION} \
+    nginx \
     supervisor
+    # nginx=${NGINX_VERSION} \
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	  && ln -sf /dev/stderr /var/log/nginx/error.log
@@ -47,5 +48,5 @@ ENTRYPOINT ["/entrypoint.sh"]
 COPY ./app /app
 WORKDIR /app
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
-# CMD ["/usr/bin/supervisord"]
+# CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord"]
