@@ -1,6 +1,7 @@
 FROM python:2.7-alpine
 
 # alpine installs NGINX_VERSION 1.10.3 via apk
+ENV NGINX_VERSION 1.12.2-r1
 
 RUN apk update \
     && apk add --no-cache --virtual .build-deps \
@@ -8,7 +9,7 @@ RUN apk update \
 	  libc-dev \
 	  linux-headers \
 	  bash \
-    nginx \
+    nginx=${NGINX_VERSION} \
     supervisor
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -18,7 +19,7 @@ EXPOSE 80 443
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 # Remove default configuration from Nginx - doesnt exist on alpine
 # RUN rm /etc/nginx/conf.d/default.conf
-# FIX - nginx on alpine looks for this dir
+# Required on alpine
 RUN mkdir -p /run/nginx
 COPY nginx.conf /etc/nginx/conf.d/
 COPY uwsgi.ini /etc/uwsgi/
