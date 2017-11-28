@@ -24,12 +24,10 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENV UWSGI_INI /app/uwsgi.ini
 
-# ENV NGINX_MAX_UPLOAD 0   # Enables unlimited size uploads
+# Enable unlimited filesize uploads by setting to 0
 ENV NGINX_MAX_UPLOAD 1m
 
-# By default, Nginx listens on port 80.
-# To modify this, change LISTEN_PORT environment variable.
-# (in a Dockerfile or with an option for `docker run`)
+# Change default Nginx port
 ENV LISTEN_PORT 80
 
 # entrypoint.sh generates additional Nginx configs
