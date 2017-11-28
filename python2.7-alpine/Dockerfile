@@ -24,7 +24,7 @@ COPY uwsgi.ini /etc/uwsgi/
 
 RUN pip install uwsgi
 # Custom Supervisord config
-#COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENV UWSGI_INI /app/uwsgi.ini
 # ENV NGINX_MAX_UPLOAD 0   # Enables unlimited size uploads
