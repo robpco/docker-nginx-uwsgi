@@ -1,5 +1,3 @@
-## Supported tags and respective `Dockerfile` links
-
 # nginx-uwsgi
 
 **Docker** image with **Nginx** and **uWSGI** that allow web applications written in **Python 3.6**, **Python 3.5** and **Python 2.7** to run in a single container.
