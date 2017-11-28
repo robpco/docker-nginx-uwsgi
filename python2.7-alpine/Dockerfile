@@ -39,7 +39,7 @@ ENV NGINX_MAX_UPLOAD 1m
 # By default, Nginx listens on port 80.
 # To modify this, change LISTEN_PORT environment variable.
 # (in a Dockerfile or with an option for `docker run`)
-# ENV LISTEN_PORT 80
+ENV LISTEN_PORT 80
 
 # Copy the entrypoint that will generate Nginx additional configs
 COPY entrypoint.sh /entrypoint.sh
