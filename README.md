@@ -1,4 +1,4 @@
-*NOTE: These image are the result of several configuration changes I needed to make to **tiangolo's images** [UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker) *Since his images were released under Apache 2, I'm sharing my modifications.*
+*NOTE: These image are the result of several configuration changes I needed to make to **tiangolo's images** [UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker) *Since tiangolo's images were released under Apache 2, I'm sharing my modifications.*
 
 # Supported tags
 
@@ -16,11 +16,11 @@ These images include the following differences from the original:
 - `supervisord.conf` is explicitly referenced in the CMD statement in the Dockerfile
   - this eliminates CRIT errors
 - `supervisord.conf` includes an explicit user-name (root), can also be set to an alternate username in the file
-  - This eliminates another different CRIT error
+  - This eliminates a different CRIT error
 - Includes updated version of Nginx (1.13.7)
 - Includes updated python revisions for each supported version (2.7, 3.5, and 3.6)
-- Added LISTEN_PORT env var to allow setting custom ports (in the Dockerfile or via Env file in docker run/docker-compose)
-- Added Alpine Versions submitting by ProgEsteves (not yet fully tested)
+- Adds LISTEN_PORT env var to allow setting custom ports (in the Dockerfile or via Env file in docker run/docker-compose)
+- Adds Alpine Versions submitted by ProgEsteves (not yet fully tested)
 
 For documentation please visit tiangolo's [repo](https://github.com/tiangolo/uwsgi-nginx-docker).
 
