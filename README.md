@@ -7,7 +7,7 @@
   - [`python3.6` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6/Dockerfile)
   - [`python3.6-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6-alpine/Dockerfile)
 
-**These images require explicitly specifying a tag listed as the `latest` tag is not supported.**
+**These images require explicitly specifying a tag - the `latest` tag is not supported.**
 - This implementation is so users are aware of the exact version they are importing (or pulling).
 - This is necessary because the tags on these images represent different variants, not incremental versions.  
 
