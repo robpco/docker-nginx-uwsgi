@@ -1,16 +1,16 @@
 FROM python:2.7-alpine
 
 RUN apk update \
-		&& apk add --no-cache gcc \
-		libc-dev \
-		linux-headers \
-		bash \
-		nginx \
-		supervisor \
-		&& pip install uwsgi
+    && apk add --no-cache gcc \
+    libc-dev \
+    linux-headers \
+    bash \
+    nginx \
+    supervisor \
+    && pip install uwsgi
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-		&& ln -sf /dev/stderr /var/log/nginx/error.log
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 EXPOSE 80 443
 
 # Replace Nginx configuration on alpine
