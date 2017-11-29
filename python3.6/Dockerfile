@@ -23,11 +23,9 @@ RUN apt-get update && apt-get install -y supervisor \
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENV UWSGI_INI /app/uwsgi.ini
-
-# Enable unlimited filesize uploads by setting to 0
-ENV NGINX_MAX_UPLOAD 1m
-
-# Change default Nginx port
+# Enable unlimited filesize uploads (restore nginx default by setting to 1m)
+ENV NGINX_MAX_UPLOAD 0
+# Enable changing default Nginx port
 ENV LISTEN_PORT 80
 
 # entrypoint.sh generates additional Nginx configs
