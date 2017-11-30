@@ -7,33 +7,33 @@
   - [`python3.6` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6/Dockerfile)
   - [`python3.6-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6-alpine/Dockerfile)
 
-**These images require explicitly specifying a tag - the `latest` tag is not supported.**
-- This implementation is so users are aware of the exact version they are importing (or pulling).
-- This is necessary because the tags on these images represent different variants, not incremental versions.  
+**The `latest` tag is not supported - one of the tags above must be explicitly specified.**
+- This is necessary because the tags represent different variants, not incremental versions.
+- This eliminates importing or pulling an unexpected version   
 
 
 # Overview
 
-**Docker** image with **Nginx**, **uWSGI** and **Python** running in a single container that enables easy migration of Python Web Apps to production on NGINX.  They are designed as a base image, and do not have web-frameworks pre-installed.  To use them, add your web-framework of choice (Flask, Django, etc..) and python application.
+**Docker** image with **Nginx**, **uWSGI** and **Python** running in a single container to simplify deploying pure Python Web Apps on NGINX.  They are designed for use as a base image, with the user adding Python Application Code and a web-framework (Flask, Django, etc..) to them.
 
-*NOTE: This project began as a fork of the repository [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker), due to an urgent need for changes and enhancements described below.*
+*NOTE: This project began as a fork of the repository [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker), due to an urgent need for changes and enhancements.*
 
-**For detailed information, examples and documentation visit tiangolo's [repo](https://github.com/tiangolo/uwsgi-nginx-docker).**
+**For detailed instructions, examples and documentation visit tiangolo's [repo](https://github.com/tiangolo/uwsgi-nginx-flask-docker).**
 
 # Enhancements
 
 These images includes the following enhancements:
-- The addition of an alpine-linux variant for each supported python version.
+- The addition of an alpine-linux variants
 - `supervisord` enhancements to reduce CRIT errors
   - `supervisord.conf` is explicitly referenced via the Dockerfile CMD statement
-  - `supervisord.conf` includes an explicitly set user-name (root) (which can be changed).
-- Updated version of Nginx (1.13.7) on non-alpine variants
-- Updated python revisions for each supported version (2.7, 3.5, and 3.6)
-- Adds LISTEN_PORT environment var to allow setting custom ports; via docker run, or docker-compose.
+  - `supervisord.conf` includes an explicitly set user-name
+- Automatic image republishing for Python image updates
+- Nginx updated to 1.13.7 on non-alpine variants
+- Adds LISTEN_PORT environment var to allow setting custom ports
 
 # Docker Hub Repository
 
-The docker-hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi/) contains auto-generated images.  They can be pulled (or referenced) by using the image name `robpco/nginx-uwsgi` plus a tag containing the python version desired (optionally appending "-alpine", for alpine variants).
+The docker-hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi/) contains auto-generated images.  They can be pulled (or referenced) by using the image name `robpco/nginx-uwsgi` plus a tag containing the python version, and optionally appending "-alpine" (for alpine variants).
 
 This example pulls the python3.6 alpine variant.
 ```bash
