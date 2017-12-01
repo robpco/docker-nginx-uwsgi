@@ -1,14 +1,17 @@
 FROM python:3.6-alpine
 
-RUN apk update \
-    && apk add --no-cache gcc \
-    libc-dev \
-    linux-headers \
-    bash \
-    nginx \
-    supervisor \
+RUN set -x \
+    && \
+    apk add --update --no-cache \
+        gcc \
+        libc-dev \
+        linux-headers \
+        bash \
+        nginx \
+        supervisor \
     && rm -rf /var/cache/apk/* \
-    && pip install uwsgi
+    # protect against uwsgi compile failing randomly
+    && (while true; do pip3 install --no-cache-dir --disable-pip-version-check uwsgi && break; done)
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log

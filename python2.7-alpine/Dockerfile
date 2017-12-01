@@ -10,9 +10,8 @@ RUN set -x \
         nginx \
         supervisor \
     && rm -rf /var/cache/apk/* \
-    # uwsgi compile fails randomly
+    # protect against uwsgi compile failing randomly
     && (while true; do pip install --no-cache-dir --disable-pip-version-check uwsgi && break; done)
-#    && pip install --no-cache-dir uwsgi
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
