@@ -2,17 +2,16 @@ FROM python:2.7-alpine
 
 RUN set -x \
     && \
-    apk update \
-    && apk add --no-cache \
+    apk add --update --no-cache \
         gcc \
         libc-dev \
         linux-headers \
         bash \
         nginx \
         supervisor \
-        uwsgi-python \
-    && rm -rf /var/cache/apk/*
-#    && pip install uwsgi
+#        uwsgi-python \
+    && rm -rf /var/cache/apk/* \
+    && pip install uwsgi
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
