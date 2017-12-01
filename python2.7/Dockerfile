@@ -4,6 +4,7 @@ RUN pip install uwsgi
 
 ENV NGINX_VERSION 1.13.7-1~jessie
 
+# use multiple key servers to protect against build failure
 RUN set -x \
     && \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
