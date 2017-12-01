@@ -5,8 +5,9 @@ RUN pip install uwsgi
 ENV NGINX_VERSION 1.13.7-1~jessie
 
 RUN set -x \
-    && NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
-    && found=''; \
+    && \
+    NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
+    found=''; \
     for server in \
         ha.pool.sks-keyservers.net \
         hkp://keyserver.ubuntu.com:80 \
