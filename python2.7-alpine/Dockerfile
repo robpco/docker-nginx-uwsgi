@@ -4,15 +4,15 @@ RUN set -x \
     && \
     apk update \
     && apk add --no-cache \
-        python-dev \
         gcc \
         libc-dev \
         linux-headers \
         bash \
         nginx \
         supervisor \
+        uwsgi \
     && rm -rf /var/cache/apk/* \
-    && pip install uwsgi
+#    && pip install uwsgi
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
