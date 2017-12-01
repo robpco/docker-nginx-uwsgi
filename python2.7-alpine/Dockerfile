@@ -9,9 +9,8 @@ RUN set -x \
         bash \
         nginx \
         supervisor \
-#        uwsgi-python \
     && rm -rf /var/cache/apk/* \
-    && pip install --no-cache-dir --verbose uwsgi
+    && pip install --no-cache-dir uwsgi
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
