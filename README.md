@@ -15,12 +15,18 @@
 
 **Docker** image with **Nginx**, **uWSGI** and **Python** running in a single container to enable running Python Web Apps on NGINX.
 
-*NOTE: This project began as a fork of the repository [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker), due to an urgent need for changes and enhancements.  Most of the original work was by [Sebastián Ramírez](https://github.com/tiangolo).*
+*NOTE: This project began as a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).  It was created due to an urgent need for enhacements.* 
+
+Implementing the enhancements required creating derivatives of both the [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask images](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
+
+GitHub Repo: <https://github.com/robertpeteuil/docker-nginx-uwsgi>
+
+Docker Hub Images: <https://hub.docker.com/r/robpco/nginx-uwsgi/>
 
 # Overview
 
 These Docker images allow the creation/migration of Python Web Apps to run with Nginx and uWSGI in a single container.  They're designed as base images that can be used:
-- as a base for other images, such as my `nginx-uwsgi-flask` image
+- as a base for other images, such as my [nginx-uwsgi-flask](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask) images for running Flask Apps.
 - as a base for specification in the `FROM` line of user Dockerfiles
 - as an image to run during development with local code mapped into the `/app` directory
 
@@ -39,7 +45,7 @@ The images on this repo includes the following enhancements:
 
 The Docker-Hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi/) contains auto-generated images from this repo.  They can be referenced (or pulled) by using the image name `robpco/nginx-uwsgi`, plus a tag for the python version desired (ex: `:python3.6`), and optionally appending `-alpine` to the tag (for alpine variants).
 
-**Detailed documentation and examples can be found on [Sebastián Ramírez's repo](https://github.com/tiangolo/uwsgi-nginx-flask-docker).**
+**Detailed usage documentation and examples can be found on the repo by Sebastián Ramírez [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).**
 
 # Custom Environment Variables
 
