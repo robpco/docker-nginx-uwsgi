@@ -1,12 +1,16 @@
 FROM python:2.7-alpine
 
-RUN apk update \
-    && apk add --no-cache gcc \
-    libc-dev \
-    linux-headers \
-    bash \
-    nginx \
-    supervisor \
+RUN set -x \
+    && \
+    apk update \
+    && apk add --no-cache \
+        python-dev \
+        gcc \
+        libc-dev \
+        linux-headers \
+        bash \
+        nginx \
+        supervisor \
     && rm -rf /var/cache/apk/* \
     && pip install uwsgi
 
