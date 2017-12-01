@@ -7,6 +7,7 @@ RUN apk update \
     bash \
     nginx \
     supervisor \
+    && rm -rf /var/cache/apk/* \
     && pip install uwsgi
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
