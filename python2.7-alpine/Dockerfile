@@ -10,8 +10,8 @@ RUN set -x \
         bash \
         nginx \
         supervisor \
-        uwsgi \
-    && rm -rf /var/cache/apk/*
+        uwsgi-python \
+    && rm -rf /var/cache/apk/* \
 #    && pip install uwsgi
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
