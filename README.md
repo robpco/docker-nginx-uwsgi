@@ -11,16 +11,15 @@
 - This is because the tags represent different variants not incremental versions.
 - This eliminates importing or pulling an unexpected version
 
-# nginx-uwsgi
+# NGINX-UWSGI
 
 **Docker** image with **Nginx**, **uWSGI** and **Python** running in a single container to enable running Python Web Apps on NGINX.
 
-*NOTE: This project began as a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).  It was created due to an urgent need for enhacements.* 
+*NOTE: This project is a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker), and was created to address an urgent need for fixes and enhancements.*
 
 Implementing the enhancements required creating derivatives of both the [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask images](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
 
 GitHub Repo: <https://github.com/robertpeteuil/docker-nginx-uwsgi>
-
 Docker Hub Images: <https://hub.docker.com/r/robpco/nginx-uwsgi/>
 
 # Overview
@@ -33,19 +32,20 @@ These Docker images allow the creation/migration of Python Web Apps to run with 
 # Enhancements
 
 The images on this repo includes the following enhancements:
-- The addition of an alpine-linux variants
-- Ability to change Nginx listen port with the LISTEN_PORT environment variable
+- Added alpine-linux variants
+- Ability to change Nginx listen port with a new LISTEN_PORT environment variable
 - Nginx updated to 1.13.7 on non-alpine variants
-- `supervisord` enhancements to reduce CRIT errors
+- reduced CRIT errors from `supervisord`
   - `supervisord.conf` is explicitly referenced via the Dockerfile CMD statement
   - `supervisord.conf` includes an explicitly set user-name
-- Automatic image republishing with Python image updates
+- Automatic image re-build when Python updates
+- Reduced build failures for key-server outages
 
 # Information
 
 The Docker-Hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi/) contains auto-generated images from this repo.  They can be referenced (or pulled) by using the image name `robpco/nginx-uwsgi`, plus a tag for the python version desired (ex: `:python3.6`), and optionally appending `-alpine` to the tag (for alpine variants).
 
-**Detailed usage documentation and examples can be found on the repo by Sebastián Ramírez [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).**
+**Detailed usage documentation and examples can be found on the repo [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).**
 
 # Custom Environment Variables
 
@@ -63,7 +63,7 @@ These images support the following custom environment variables:
 
 Environment variables can be set in multiple ways.  The following examples, demonstrate setting the `LISTEN_PORT` environment variable via three different methods.  These methods apply to the other Environment Variables as well.
 
-**Environment variables set in a `Dockerfile`**:
+**Setting in a `Dockerfile`**
 
 ```dockerfile
 # ... (snip) ...
@@ -71,13 +71,15 @@ ENV LISTEN_PORT 8080
 # ... (snip) ...
 ```
 
-**Environment variables set during [`docker run`](https://docs.docker.com/engine/reference/commandline/run/#options)** with the `-e` option:
+
+**Setting during [`docker run`](https://docs.docker.com/engine/reference/commandline/run/#options) with the `-e` option**
 
 ```shell
 docker run -e LISTEN_PORT=8080 -p 8080:8080 myimage
 ```
 
-**Environment variables set by `docker-compose`** using the `environment:` keyword in a `docker-compose` file:
+
+**Setting in `docker-compose` file using the `environment:` keyword in a `docker-compose` file**
 
 ```yml
 version: '2.2'
@@ -90,14 +92,20 @@ services:
 
 
 # UPDATES
+- 2017-11-29: Added ability to change port Nginx listens on with new environment variable `LISTEN_PORT`.
+  - Thanks to github user [tmshn](https://github.com/tmshn)
+- 2017-11-29: Alpine variants added
+  - Thanks to github user [ProgEsteves](https://github.com/ProgEsteves)
+- 2017-11-29: Automatic image re-build when Python updates
+- 2017-11-28: Updated Nginx version installed on non-Alpine images
 
-- 2017-11-29: Added ability to change Nginx listen port by using the environment variable `LISTEN_PORT`.  Thanks to github user [tmshn](https://github.com/tmshn)
-- 2017-11-29: Alpine variants added with assistance of github user [ProgEsteves](https://github.com/ProgEsteves)
-  - Additional Alpine changes required:
-    - Replace default `/etc/nginx/nginx.conf` with an alternate version
-    - Added `RUN mkdir -p /run/nginx` to Dockerfile
-- 2017-11-29: Added Automatic image republishing when Python image updates
+
+# FIXES
+- 2017:11-30: Alpine images - eliminated uWSGI random build failures
+- 2017-11-30: Non-Alpine images - limit build failures caused by GPG key validation failing
+- 2017-11-29: Alpine required additional changes:
+  - Replace default `/etc/nginx/nginx.conf` with an alternate version
+  - Create `/run/nginx` directory to stop immediate Nginx crash
 - 2017-11-28: Fixed console errors from supervisor process:
-  - Added explicit path reference to `supervisord.conf` in Dockerfile `CMD`
+  - Added explicit path reference to `supervisord.conf` in Dockerfile `CMD` statement
   - Added explicitly set username in `supervisord.conf`
-- 2017-11-28: Updated Nginx version
