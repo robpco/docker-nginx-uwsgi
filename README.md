@@ -19,27 +19,26 @@
 
 Implementing the enhancements required creating derivatives of both the [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask images](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
 
-GitHub Repo: <https://github.com/robertpeteuil/docker-nginx-uwsgi>
-Docker Hub Images: <https://hub.docker.com/r/robpco/nginx-uwsgi/>
+**GitHub Repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi>
+**Docker Hub Images**: <https://hub.docker.com/r/robpco/nginx-uwsgi/>
 
 # Overview
 
-These Docker images allow the creation/migration of Python Web Apps to run with Nginx and uWSGI in a single container.  They're designed as base images that can be used:
-- as a base for other images, such as my [nginx-uwsgi-flask](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask) images for running Flask Apps.
-- as a base for specification in the `FROM` line of user Dockerfiles
-- as an image to run during development with local code mapped into the `/app` directory
+This Docker image allow the creation/migration of Python Web Apps to run on Nginx and uWSGI in a single container.  It's designed for use as base image for:
+- Other images - such as my image for running Flask Apps [nginx-uwsgi-flask](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask) .
+- A development image that can be customized with your unique web-framework, Python libraries and code.
 
 # Enhancements
 
-The images on this repo includes the following enhancements:
-- Added alpine-linux variants
+The image used in this repo includes the following enhancements (over previous repos):
+- Adds image variants built on alpine-linux
 - Ability to change Nginx listen port with a new LISTEN_PORT environment variable
-- Nginx updated to 1.13.7 on non-alpine variants
-- reduced CRIT errors from `supervisord`
+- Updated built-in Nginx to 1.13.7 on non-alpine variants
+- Reduces CRIT errors from `supervisord`
   - `supervisord.conf` is explicitly referenced via the Dockerfile CMD statement
   - `supervisord.conf` includes an explicitly set user-name
-- Automatic image re-build when Python updates
-- Reduced build failures for key-server outages
+- Docker-Hub Image is Automatically re-built when Python updates
+- Manually Building the image is protected against failures from key-server outages
 
 # Information
 
@@ -49,14 +48,14 @@ The Docker-Hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi/) contai
 
 # Custom Environment Variables
 
-These images support the following custom environment variables:
+This image supports the following custom environment variables:
 
-- **UWSGI_INI** = the path and file of the configuration info
+- **UWSGI_INI** - the path and file of the configuration info
   - default: `/app/uwsgi.ini`
-- **NGINX_MAX_UPLOAD** = the maximum file upload size allowed by Nginx
+- **NGINX_MAX_UPLOAD** - the maximum file upload size allowed by Nginx
   - 0 = unlimited (image default)
   - 1m = normal Nginx default
-- **LISTEN_PORT** = custom port that Nginx should listen on
+- **LISTEN_PORT** - custom port that Nginx should listen on
   - 80 = Nginx default
 
 # Setting Environment Variables
