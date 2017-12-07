@@ -20,6 +20,7 @@
 Implementing the enhancements required creating derivatives of both the [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask images](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
 
 **GitHub Repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi>
+
 **Docker Hub Images**: <https://hub.docker.com/r/robpco/nginx-uwsgi/>
 
 # Overview
