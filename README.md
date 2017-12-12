@@ -1,23 +1,21 @@
 # Supported tags and `Dockerfile` links
 
-- [`python2.7` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python2.7/Dockerfile)
-- [`python2.7-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python2.7-alpine/Dockerfile)
-- [`python3.5` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.5/Dockerfile)
-- [`python3.5-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.5-alpine/Dockerfile)
-- [`python3.6` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6/Dockerfile)
-- [`python3.6-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6-alpine/Dockerfile)
+- [`py2.7`, `python2.7` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python2.7/Dockerfile)
+- [`py2.7-alpine`, `python2.7-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python2.7-alpine/Dockerfile)
+- [`py3.5`, `python3.5` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.5/Dockerfile)
+- [`py3.5-alpine`, `python3.5-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.5-alpine/Dockerfile)
+- [`py3.6`, `python3.6` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6/Dockerfile)
+- [`py3.6-alpine`, `python3.6-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6-alpine/Dockerfile)
 
-**The `latest` tag is not supported - one of the tags above must be explicitly specified.**
-- This is because the tags represent different variants not incremental versions.
-- This eliminates importing or pulling an unexpected version
+**the `latest` tag is not assigned - explicitly use one of the tags above.**
+
+>This is to prevent pulling an unexpected image, as the tags represent completely different image variants not incremental versions.
 
 # NGINX-UWSGI
 
 **Docker** image with **Nginx**, **uWSGI** and **Python** running in a single container to enable running Python Web Apps on NGINX.
 
-*NOTE: This project is a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker), and was created to address an urgent need for fixes and enhancements.*
-
-Implementing the enhancements required creating derivatives of both the [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask images](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
+> NOTE: This project is a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).  It was created out of necessity to address urgent fixes and enhancements.  This ultimately required creating derivatives of both the [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask images](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
 
 **GitHub Repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi>
 
@@ -92,6 +90,7 @@ services:
 
 
 # UPDATES
+- 2017-12-11: Added multiple tags per variant: `py3.6` is the same as `python3.6`, and so forth...
 - 2017-11-29: Added ability to change port Nginx listens on with new environment variable `LISTEN_PORT`.
   - Thanks to github user [tmshn](https://github.com/tmshn)
 - 2017-11-29: Alpine variants added
