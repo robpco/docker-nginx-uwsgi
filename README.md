@@ -24,8 +24,10 @@
 # Overview
 
 This Docker image allow the creation/migration of Python Web Apps to run on Nginx and uWSGI in a single container.  It's designed for use as base image for:
-- Other images - such as my image for running Flask Apps [nginx-uwsgi-flask](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask) .
+- Other images - such as a pre-built image for running Flask Apps [nginx-uwsgi-flask](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask) .
 - A development image that can be customized with your unique web-framework, Python libraries and code.
+
+This repo auto-generates images to [Docker-Hub](https://hub.docker.com/r/robpco/nginx-uwsgi/).  It includes standard and alpine-based variants for each supported Python version (2.7, 3.5, 3.6).
 
 # Enhancements
 
