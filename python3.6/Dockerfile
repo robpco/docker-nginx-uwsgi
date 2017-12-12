@@ -1,12 +1,11 @@
 FROM python:3.6
 
-RUN pip install uwsgi
+RUN pip install --no-cache-dir --disable-pip-version-check uwsgi
 
 ENV NGINX_VERSION 1.13.7-1~jessie
 
 # use multiple key servers to protect against build failure
-RUN set -x \
-    && \
+RUN set -x && \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
     found=''; \
     for server in \
@@ -32,19 +31,19 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # setup and copy config files
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/conf.d/default.conf && \
+    echo "daemon off;" >> /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx/conf.d/
 COPY uwsgi.ini /etc/uwsgi/
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# expose ports and set ENV variables
-EXPOSE 80 443
+# set ENV variables and expose ports
 ENV UWSGI_INI /app/uwsgi.ini
 # Enable unlimited filesize uploads (restore nginx default by setting to 1m)
 ENV NGINX_MAX_UPLOAD 0
 # Enable changing default Nginx port
 ENV LISTEN_PORT 80
+EXPOSE 80 443
 
 # setup entrypoint.sh which generates Nginx configs at runtime
 COPY entrypoint.sh /entrypoint.sh
