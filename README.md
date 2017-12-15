@@ -33,12 +33,10 @@ This repo auto-generates images to [Docker-Hub](https://hub.docker.com/r/robpco/
 
 The image used in this repo includes the following enhancements (over previous repos):
 - Adds image variants built on alpine-linux
-- Ability to change Nginx listen port with a new LISTEN_PORT environment variable
 - Updated built-in Nginx to 1.13.7 on non-alpine variants
 - Reduces CRIT errors from `supervisord`
   - `supervisord.conf` is explicitly referenced via the Dockerfile CMD statement
   - `supervisord.conf` includes an explicitly set user-name
-- Docker-Hub Image is Automatically re-built when Python updates
 - Manually Building the image is protected against failures from key-server outages
 
 # Information
