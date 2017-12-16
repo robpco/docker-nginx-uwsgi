@@ -100,7 +100,8 @@ services:
 
 
 # FIXES
-- 2017:11-30: Alpine images - eliminated uWSGI random build failures
+- 2017-12-15: Fix to avoid duplicate listen entries in nginx.conf
+- 2017-11-30: Alpine images - eliminated uWSGI random build failures
 - 2017-11-30: Non-Alpine images - limit build failures caused by GPG key validation failing
 - 2017-11-29: Alpine required additional changes:
   - Replace default `/etc/nginx/nginx.conf` with an alternate version
