@@ -6,6 +6,9 @@ USE_NGINX_MAX_UPLOAD=${NGINX_MAX_UPLOAD:-0}
 # Generate Nginx config for maximum upload file size
 echo "client_max_body_size $USE_NGINX_MAX_UPLOAD;" > /etc/nginx/conf.d/upload.conf
 
+# Add installed packages to PYTHONPATH to enable uWSGI imports
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.6/site-packages:/usr/lib/python3.6/site-packages
+
 # Get the listen port for Nginx, default to 80
 USE_LISTEN_PORT=${LISTEN_PORT:-80}
 if ! grep -q "listen ${USE_LISTEN_PORT};" /etc/nginx/conf.d/nginx.conf ; then
