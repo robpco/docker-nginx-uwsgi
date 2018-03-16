@@ -2,7 +2,7 @@ FROM python:3.6
 
 RUN pip install --no-cache-dir --disable-pip-version-check uwsgi
 
-ENV NGINX_VERSION 1.13.7-1~jessie
+ENV NGINX_VERSION 1.13.9-1~jessie
 
 # use multiple key servers to protect against build failure
 RUN set -x && \
