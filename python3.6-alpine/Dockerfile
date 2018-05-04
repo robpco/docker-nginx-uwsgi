@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.6-alpine3.7
 
 RUN set -x && \
     apk add --no-cache \

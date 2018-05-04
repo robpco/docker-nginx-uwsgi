@@ -1,11 +1,9 @@
 # Supported tags and `Dockerfile` links
 
 - `py2.7`, `python2.7` [_(python2.7/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python2.7/Dockerfile)
-- `py2.7-alpine`, `python2.7-alpine` [_(python2.7-alpine/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python2.7-alpine/Dockerfile)
-- `py3.5`, `python3.5` [_(python3.5/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.5/Dockerfile)
-- `py3.5-alpine`, `python3.5-alpine` [_(python3.5-alpine/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.5-alpine/Dockerfile)
+- `py2.7-A`, `py2.7-alpine`, `python2.7-alpine` [_(python2.7-alpine/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python2.7-alpine/Dockerfile)
 - `py3.6`, `python3.6` [_(python3.6/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6/Dockerfile)
-- `py3.6-alpine`, `python3.6-alpine` [_(python3.6-alpine/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6-alpine/Dockerfile)
+- `py3.6-A`, `py3.6-alpine`, `python3.6-alpine` [_(python3.6-alpine/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6-alpine/Dockerfile)
 
 **You must explicitly use one of the tags above.**  The `latest` tag is not assigned since each tag represents a different variant, not an incremental version.
 
@@ -24,7 +22,7 @@ This Docker image allow the creation/migration of Python Web Apps to run on Ngin
 - Other images - such as a pre-built image for running Flask Apps [nginx-uwsgi-flask](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask) .
 - A development image that can be customized with your unique web-framework, Python libraries and code.
 
-This repo auto-generates images to [Docker-Hub](https://hub.docker.com/r/robpco/nginx-uwsgi/).  It includes standard and alpine-based variants for each supported Python version (2.7, 3.5, 3.6).
+This repo auto-generates images to [Docker-Hub](https://hub.docker.com/r/robpco/nginx-uwsgi/).  It includes standard and alpine-based variants for each supported Python version (2.7, 3.6).
 
 ## Usage
 
@@ -82,6 +80,9 @@ Inspired by the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tian
   - Thanks to github user [ProgEsteves](https://github.com/ProgEsteves)
 - 2017-11-29: Automatic image re-build when Python updates
 - 2017-11-28: Updated Nginx version installed on non-Alpine images
+- 2018-05-04: Updated non alpine version to use `pythonx.x-stretch` as base & Nginx 1.13.12-1
+- 2018-05-04: Update Alpine versions to use `pythonx.x-alpine3.7` as base
+- 2018-05-04: Removed `python3.5` support due to lack of use and base on strech and alpine3.7
 
 ## CHANGELOG
 

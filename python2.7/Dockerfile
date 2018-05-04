@@ -1,8 +1,8 @@
-FROM python:2.7
+FROM python:2.7-stretch
 
 RUN pip install --no-cache-dir --disable-pip-version-check uwsgi
 
-ENV NGINX_VERSION 1.13.9-1~jessie
+ENV NGINX_VERSION 1.13.12-1~stretch
 
 # use multiple key servers to protect against build failure
 RUN set -x && \
@@ -18,7 +18,7 @@ RUN set -x && \
         apt-key adv --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
     done; \
     test -z "$found" && echo >&2 "error: failed to fetch GPG key $NGINX_GPGKEY" && exit 1; \
-    echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
+    echo "deb http://nginx.org/packages/mainline/debian/ stretch nginx" >> /etc/apt/sources.list \
     && apt-get update && apt-get install -y \
         ca-certificates \
         nginx=${NGINX_VERSION} \
