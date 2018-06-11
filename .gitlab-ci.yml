@@ -82,8 +82,14 @@ build36-alpine:
 
 trigger_build:
   stage: deploy
+  image: 
+    name: robpco/awscli
+    entrypoint:
+      - '/usr/bin/env'
+      - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
   script:
     - 'curl -X POST -F token="$TRIGGER_TOKEN" -F ref="master" -F "variables[CI_COMMIT_TAG]=deploy99" https://gitlab.com/api/v4/projects/7004817/trigger/pipeline'
+  allow_failure: true
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
