@@ -82,7 +82,8 @@ Inspired by the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tian
 - 2017-11-28: Updated Nginx version installed on non-Alpine images
 - 2018-05-04: Updated non alpine version to use `pythonx.x-stretch` as base & Nginx 1.13.12-1
 - 2018-05-04: Update Alpine versions to use `pythonx.x-alpine3.7` as base
-- 2018-05-04: Removed `python3.5` support due to lack of use and base on strech and alpine3.7
+- 2018-05-04: Removed `python3.5` support due to lack of use and base on stretch and alpine3.7
+- 2018-06-10: Updated non alpine versions to Nginx 1.15.0-1
 
 ## CHANGELOG
 
