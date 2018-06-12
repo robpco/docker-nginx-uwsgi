@@ -47,7 +47,7 @@ build36:
       - $CI_COMMIT_TAG =~ /^deploy+/
   retry: 2
   tags: 
-  - docker
+    - docker
 
 build27-alpine:
   stage: build
@@ -83,7 +83,7 @@ build36-alpine:
       - $CI_COMMIT_TAG =~ /^deploy+/
   retry: 2
   tags: 
-  - shell
+    - docker
 
 trigger_build:
   stage: deploy
@@ -99,4 +99,4 @@ trigger_build:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
   tags: 
-    - shell
+    - docker
