@@ -20,7 +20,7 @@ build27:
     - docker:dind
   script:
     - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
-    - docker build --tag "${REGISTRY_IMAGE}:2.7" --tag "${REGISTRY_IMAGE}:py2.7" --tag "${REGISTRY_IMAGE}:python2.7" ./python2.7/
+    - docker build --pull --tag "${REGISTRY_IMAGE}:2.7" --tag "${REGISTRY_IMAGE}:py2.7" --tag "${REGISTRY_IMAGE}:python2.7" ./python2.7/
     - docker push "${REGISTRY_IMAGE}:2.7"
     - docker push "${REGISTRY_IMAGE}:py2.7"
     - docker push "${REGISTRY_IMAGE}:python2.7"
@@ -38,7 +38,7 @@ build36:
     - docker:dind
   script:
     - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
-    - docker build --tag "${REGISTRY_IMAGE}:3.6" --tag "${REGISTRY_IMAGE}:py3.6" --tag "${REGISTRY_IMAGE}:python3.6" ./python3.6/
+    - docker build --pull --tag "${REGISTRY_IMAGE}:3.6" --tag "${REGISTRY_IMAGE}:py3.6" --tag "${REGISTRY_IMAGE}:python3.6" ./python3.6/
     - docker push "${REGISTRY_IMAGE}:3.6"
     - docker push "${REGISTRY_IMAGE}:py3.6"
     - docker push "${REGISTRY_IMAGE}:python3.6"
@@ -56,7 +56,7 @@ build27-alpine:
     - docker:dind
   script:
     - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
-    - docker build --tag "${REGISTRY_IMAGE}:2.7-A" --tag "${REGISTRY_IMAGE}:py2.7-alpine" --tag "${REGISTRY_IMAGE}:python2.7-alpine" ./python2.7-alpine/
+    - docker build --pull --tag "${REGISTRY_IMAGE}:2.7-A" --tag "${REGISTRY_IMAGE}:py2.7-alpine" --tag "${REGISTRY_IMAGE}:python2.7-alpine" ./python2.7-alpine/
     - docker push "${REGISTRY_IMAGE}:2.7-A"
     - docker push "${REGISTRY_IMAGE}:py2.7-alpine"
     - docker push "${REGISTRY_IMAGE}:python2.7-alpine"
@@ -74,7 +74,7 @@ build36-alpine:
     - docker:dind
   script:
     - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
-    - docker build --tag "${REGISTRY_IMAGE}:3.6-A" --tag "${REGISTRY_IMAGE}:py3.6-alpine" --tag "${REGISTRY_IMAGE}:python3.6-alpine" ./python3.6-alpine/
+    - docker build --pull --tag "${REGISTRY_IMAGE}:3.6-A" --tag "${REGISTRY_IMAGE}:py3.6-alpine" --tag "${REGISTRY_IMAGE}:python3.6-alpine" ./python3.6-alpine/
     - docker push "${REGISTRY_IMAGE}:3.6-A"
     - docker push "${REGISTRY_IMAGE}:py3.6-alpine"
     - docker push "${REGISTRY_IMAGE}:python3.6-alpine"
