@@ -28,7 +28,7 @@ build27:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
   retry: 2
-  tag: 
+  tags: 
     - shell
 
 build36:
@@ -45,7 +45,7 @@ build36:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
   retry: 2
-  tag: 
+  tags: 
   - shell
 
 build27-alpine:
@@ -62,7 +62,7 @@ build27-alpine:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
   retry: 2
-  tag: 
+  tags: 
     - shell
 
 build36-alpine:
@@ -79,7 +79,7 @@ build36-alpine:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
   retry: 2
-  tag: 
+  tags: 
   - shell
 
 trigger_build:
@@ -95,5 +95,5 @@ trigger_build:
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
-  tag: 
+  tags: 
     - shell
