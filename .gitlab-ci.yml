@@ -1,8 +1,5 @@
 image: docker:latest
 
-services:
-  - docker:dind
-
 stages:
   - build
   - deploy
@@ -18,6 +15,9 @@ before_script:
 
 build27:
   stage: build
+  image: docker:latest
+  services:
+    - docker:dind
   script:
     # - docker pull "${REGISTRY_IMAGE}:2.7" || true
     - docker build --tag "${REGISTRY_IMAGE}:2.7" --tag "${REGISTRY_IMAGE}:py2.7" --tag "${REGISTRY_IMAGE}:python2.7" ./python2.7/
@@ -35,6 +35,9 @@ build27:
 
 build36:
   stage: build
+  image: docker:latest
+  services:
+    - docker:dind
   script:
     # - docker pull "${REGISTRY_IMAGE}:3.6" || true
     - docker build --tag "${REGISTRY_IMAGE}:3.6" --tag "${REGISTRY_IMAGE}:py3.6" --tag "${REGISTRY_IMAGE}:python3.6" ./python3.6/
@@ -52,6 +55,9 @@ build36:
 
 build27-alpine:
   stage: build
+  image: docker:latest
+  services:
+    - docker:dind
   script:
     # - docker pull "${REGISTRY_IMAGE}:2.7-A" || true
     - docker build --tag "${REGISTRY_IMAGE}:2.7-A" --tag "${REGISTRY_IMAGE}:py2.7-alpine" --tag "${REGISTRY_IMAGE}:python2.7-alpine" ./python2.7-alpine/
@@ -69,6 +75,9 @@ build27-alpine:
 
 build36-alpine:
   stage: build
+  image: docker:latest
+  services:
+    - docker:dind
   script:
     # - docker pull "${REGISTRY_IMAGE}:3.6-A" || true
     - docker build --tag "${REGISTRY_IMAGE}:3.6-A" --tag "${REGISTRY_IMAGE}:py3.6-alpine" --tag "${REGISTRY_IMAGE}:python3.6-alpine" ./python3.6-alpine/
