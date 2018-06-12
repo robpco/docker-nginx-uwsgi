@@ -1,4 +1,4 @@
-image: docker:latest
+# image: docker:latest
 
 stages:
   - build
@@ -9,100 +9,91 @@ variables:
   REGISTRY_USER: "robpco"
   RELEASE_IMAGE: "nginx-uwsgi"
   REGISTRY_IMAGE: "${REGISTRY}/${REGISTRY_USER}/${RELEASE_IMAGE}"
+  DOCKER_DRIVER: overlay2
 
 before_script:
   - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
 
 build27:
   stage: build
-  image: docker:latest
-  services:
-    - docker:dind
+  # image: docker:latest
+  # services:
+  #   - docker:dind
   script:
-    # - docker pull "${REGISTRY_IMAGE}:2.7" || true
     - docker build --tag "${REGISTRY_IMAGE}:2.7" --tag "${REGISTRY_IMAGE}:py2.7" --tag "${REGISTRY_IMAGE}:python2.7" ./python2.7/
-    # - docker build --cache-from "${REGISTRY_IMAGE}:2.7" --tag "${REGISTRY_IMAGE}:2.7" --tag "${REGISTRY_IMAGE}:py2.7" --tag "${REGISTRY_IMAGE}:python2.7" ./python2.7/
     - docker push "${REGISTRY_IMAGE}:2.7"
     - docker push "${REGISTRY_IMAGE}:py2.7"
     - docker push "${REGISTRY_IMAGE}:python2.7"
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
-    # refs:
-    #   - schedules
-    #   - master
   retry: 2
+  tag: 
+    - shell
 
 build36:
   stage: build
-  image: docker:latest
-  services:
-    - docker:dind
+  # image: docker:latest
+  # services:
+  #   - docker:dind
   script:
-    # - docker pull "${REGISTRY_IMAGE}:3.6" || true
     - docker build --tag "${REGISTRY_IMAGE}:3.6" --tag "${REGISTRY_IMAGE}:py3.6" --tag "${REGISTRY_IMAGE}:python3.6" ./python3.6/
-    # - docker build --cache-from "${REGISTRY_IMAGE}:3.6" --tag "${REGISTRY_IMAGE}:3.6" --tag "${REGISTRY_IMAGE}:py3.6" --tag "${REGISTRY_IMAGE}:python3.6" ./python3.6/
     - docker push "${REGISTRY_IMAGE}:3.6"
     - docker push "${REGISTRY_IMAGE}:py3.6"
     - docker push "${REGISTRY_IMAGE}:python3.6"
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
-    # refs:
-    #   - schedules
-    #   - master
   retry: 2
+  tag: 
+  - shell
 
 build27-alpine:
   stage: build
-  image: docker:latest
-  services:
-    - docker:dind
+  # image: docker:latest
+  # services:
+  #   - docker:dind
   script:
-    # - docker pull "${REGISTRY_IMAGE}:2.7-A" || true
     - docker build --tag "${REGISTRY_IMAGE}:2.7-A" --tag "${REGISTRY_IMAGE}:py2.7-alpine" --tag "${REGISTRY_IMAGE}:python2.7-alpine" ./python2.7-alpine/
-    # - docker build --cache-from "${REGISTRY_IMAGE}:2.7-A" --tag "${REGISTRY_IMAGE}:2.7-A" --tag "${REGISTRY_IMAGE}:py2.7-alpine" --tag "${REGISTRY_IMAGE}:python2.7-alpine" ./python2.7-alpine/
     - docker push "${REGISTRY_IMAGE}:2.7-A"
     - docker push "${REGISTRY_IMAGE}:py2.7-alpine"
     - docker push "${REGISTRY_IMAGE}:python2.7-alpine"
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
-    # refs:
-    #   - schedules
-    #   - master
   retry: 2
+  tag: 
+    - shell
 
 build36-alpine:
   stage: build
-  image: docker:latest
-  services:
-    - docker:dind
+  # image: docker:latest
+  # services:
+  #   - docker:dind
   script:
-    # - docker pull "${REGISTRY_IMAGE}:3.6-A" || true
     - docker build --tag "${REGISTRY_IMAGE}:3.6-A" --tag "${REGISTRY_IMAGE}:py3.6-alpine" --tag "${REGISTRY_IMAGE}:python3.6-alpine" ./python3.6-alpine/
-    # - docker build --cache-from "${REGISTRY_IMAGE}:3.6-A" --tag "${REGISTRY_IMAGE}:3.6-A" --tag "${REGISTRY_IMAGE}:py3.6-alpine" --tag "${REGISTRY_IMAGE}:python3.6-alpine" ./python3.6-alpine/
     - docker push "${REGISTRY_IMAGE}:3.6-A"
     - docker push "${REGISTRY_IMAGE}:py3.6-alpine"
     - docker push "${REGISTRY_IMAGE}:python3.6-alpine"
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
-    # refs:
-    #   - schedules
-    #   - master
   retry: 2
+  tag: 
+  - shell
 
 trigger_build:
   stage: deploy
-  image: 
-    name: robpco/awscli
-    entrypoint:
-      - '/usr/bin/env'
-      - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+  # image: 
+  #   name: robpco/awscli
+  #   entrypoint:
+  #     - '/usr/bin/env'
+  #     - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
   script:
     - 'curl -X POST -F token="$TRIGGER_TOKEN" -F ref="master" -F "variables[CI_COMMIT_TAG]=deploy99" https://gitlab.com/api/v4/projects/7004817/trigger/pipeline'
   allow_failure: true
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
+  tag: 
+    - shell
