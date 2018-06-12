@@ -1,4 +1,6 @@
-# image: docker:latest
+# .gitlab-ci.yml
+
+image: docker:latest
 
 stages:
   - build
@@ -11,15 +13,13 @@ variables:
   REGISTRY_IMAGE: "${REGISTRY}/${REGISTRY_USER}/${RELEASE_IMAGE}"
   DOCKER_DRIVER: overlay2
 
-before_script:
-  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
-
 build27:
   stage: build
-  # image: docker:latest
-  # services:
-  #   - docker:dind
+  image: docker:latest
+  services:
+    - docker:dind
   script:
+    - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
     - docker build --tag "${REGISTRY_IMAGE}:2.7" --tag "${REGISTRY_IMAGE}:py2.7" --tag "${REGISTRY_IMAGE}:python2.7" ./python2.7/
     - docker push "${REGISTRY_IMAGE}:2.7"
     - docker push "${REGISTRY_IMAGE}:py2.7"
@@ -29,14 +29,15 @@ build27:
       - $CI_COMMIT_TAG =~ /^deploy+/
   retry: 2
   tags: 
-    - shell
+    - docker
 
 build36:
   stage: build
-  # image: docker:latest
-  # services:
-  #   - docker:dind
+  image: docker:latest
+  services:
+    - docker:dind
   script:
+    - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
     - docker build --tag "${REGISTRY_IMAGE}:3.6" --tag "${REGISTRY_IMAGE}:py3.6" --tag "${REGISTRY_IMAGE}:python3.6" ./python3.6/
     - docker push "${REGISTRY_IMAGE}:3.6"
     - docker push "${REGISTRY_IMAGE}:py3.6"
@@ -46,14 +47,15 @@ build36:
       - $CI_COMMIT_TAG =~ /^deploy+/
   retry: 2
   tags: 
-  - shell
+  - docker
 
 build27-alpine:
   stage: build
-  # image: docker:latest
-  # services:
-  #   - docker:dind
+  image: docker:latest
+  services:
+    - docker:dind
   script:
+    - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
     - docker build --tag "${REGISTRY_IMAGE}:2.7-A" --tag "${REGISTRY_IMAGE}:py2.7-alpine" --tag "${REGISTRY_IMAGE}:python2.7-alpine" ./python2.7-alpine/
     - docker push "${REGISTRY_IMAGE}:2.7-A"
     - docker push "${REGISTRY_IMAGE}:py2.7-alpine"
@@ -63,14 +65,15 @@ build27-alpine:
       - $CI_COMMIT_TAG =~ /^deploy+/
   retry: 2
   tags: 
-    - shell
+    - docker
 
 build36-alpine:
   stage: build
-  # image: docker:latest
-  # services:
-  #   - docker:dind
+  image: docker:latest
+  services:
+    - docker:dind
   script:
+    - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
     - docker build --tag "${REGISTRY_IMAGE}:3.6-A" --tag "${REGISTRY_IMAGE}:py3.6-alpine" --tag "${REGISTRY_IMAGE}:python3.6-alpine" ./python3.6-alpine/
     - docker push "${REGISTRY_IMAGE}:3.6-A"
     - docker push "${REGISTRY_IMAGE}:py3.6-alpine"
@@ -84,11 +87,11 @@ build36-alpine:
 
 trigger_build:
   stage: deploy
-  # image: 
-  #   name: robpco/awscli
-  #   entrypoint:
-  #     - '/usr/bin/env'
-  #     - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+  image: 
+    name: robpco/awscli
+    entrypoint:
+      - '/usr/bin/env'
+      - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
   script:
     - 'curl -X POST -F token="$TRIGGER_TOKEN" -F ref="master" -F "variables[CI_COMMIT_TAG]=deploy99" https://gitlab.com/api/v4/projects/7004817/trigger/pipeline'
   allow_failure: true
