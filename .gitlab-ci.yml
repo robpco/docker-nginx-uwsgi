@@ -97,6 +97,6 @@ trigger_build:
   allow_failure: true
   only:
     variables:
-      - $CI_COMMIT_TAG =~ /^deploy+/
+      - $CI_PIPELINE_SOURCE == "schedule"
   tags: 
     - docker
