@@ -1,9 +1,9 @@
 # Supported tags and `Dockerfile` links
 
-- `py2.7`, `python2.7` [_(python2.7/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python2.7/Dockerfile)
-- `py2.7-A`, `py2.7-alpine`, `python2.7-alpine` [_(python2.7-alpine/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python2.7-alpine/Dockerfile)
-- `py3.6`, `python3.6` [_(python3.6/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6/Dockerfile)
-- `py3.6-A`, `py3.6-alpine`, `python3.6-alpine` [_(python3.6-alpine/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi/blob/master/python3.6-alpine/Dockerfile)
+- `py2.7`, `python2.7` [_(python2.7/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi/blob/master/python2.7/Dockerfile)
+- `py2.7-A`, `py2.7-alpine`, `python2.7-alpine` [_(python2.7-alpine/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi/blob/master/python2.7-alpine/Dockerfile)
+- `py3.6`, `python3.6` [_(python3.6/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi/blob/master/python3.6/Dockerfile)
+- `py3.6-A`, `py3.6-alpine`, `python3.6-alpine` [_(python3.6-alpine/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi/blob/master/python3.6-alpine/Dockerfile)
 
 **You must explicitly use one of the tags above.**  The `latest` tag is not assigned since each tag represents a different variant, not an incremental version.
 
@@ -11,7 +11,7 @@
 
 **Docker** image with **Nginx**, **uWSGI** and **Python** running in a single container to enable running Python Web Apps on NGINX.
 
-**GitHub Repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi>
+**GitHub Repo**: <https://github.com/robpco/docker-nginx-uwsgi>
 
 **Docker Hub Images**: <https://hub.docker.com/r/robpco/nginx-uwsgi/>
 
@@ -19,7 +19,7 @@
 
 This Docker image allow the creation/migration of Python Web Apps to run on Nginx and uWSGI in a single container.  It's designed for use as base image for:
 
-- Other images - such as a pre-built image for running Flask Apps [nginx-uwsgi-flask](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask) .
+- Other images - such as a pre-built image for running Flask Apps [nginx-uwsgi-flask](https://github.com/robpco/docker-nginx-uwsgi-flask) .
 - A development image that can be customized with your unique web-framework, Python libraries and code.
 
 This repo auto-generates images to [Docker-Hub](https://hub.docker.com/r/robpco/nginx-uwsgi/).  It includes standard and alpine-based variants for each supported Python version (2.7, 3.6).
@@ -68,8 +68,6 @@ services:
   environment:
     LISTEN_PORT: 8080
 ```
-
-Inspired by the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).
 
 ## UPDATES
 
