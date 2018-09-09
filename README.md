@@ -20,11 +20,11 @@ This Docker image allow the creation/migration of Python Web Apps to run on Ngin
 - Other images - such as a pre-built image for running Flask Apps [nginx-uwsgi-flask](https://github.com/robpco/docker-nginx-uwsgi-flask) .
 - A development image that can be customized with your unique web-framework, Python libraries and code.
 
-This repo auto-generates images to [Docker-Hub](https://hub.docker.com/r/robpco/nginx-uwsgi/).  It includes standard and alpine-based variants for each supported Python version (2.7, 3.6).
+This repo auto-generates images to [Docker-Hub](https://hub.docker.com/r/robpco/nginx-uwsgi/).  It includes variants for each supported Python version (2.7, 3.6).
 
 ## Usage
 
-The Docker-Hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi/) contains auto-generated images from this repo.  They can be referenced (or pulled) by using the image name `robpco/nginx-uwsgi`, plus a tag for the python version desired (ex: `:python3.6`), and optionally appending `-alpine` to the tag (for alpine variants).
+The Docker-Hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi/) contains auto-generated images from this repo.  They can be referenced (or pulled) by using the image name `robpco/nginx-uwsgi`, plus a tag for the python version desired (ex: `:python3.6`).
 
 ## Custom Environment Variables
 
@@ -74,7 +74,7 @@ services:
   - Thanks to github user [tmshn](https://github.com/tmshn)
 - 2017-11-29: Automatic image re-build when Python updates
 - 2017-11-28: Updated Nginx version
-- 2018-05-04: Updated non alpine version to use `pythonx.x-stretch` as base & Nginx 1.13.12-1
+- 2018-05-04: Updated to use `pythonx.x-stretch` as base & Nginx 1.13.12-1
 - 2018-06-10: Updated to Nginx 1.15.0-1
 
 ## CHANGELOG
